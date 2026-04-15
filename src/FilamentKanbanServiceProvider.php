@@ -45,7 +45,7 @@ class FilamentKanbanServiceProvider extends PackageServiceProvider
 
         // Handle Stubs
         if (app()->runningInConsole()) {
-            foreach (app(Filesystem::class)->files(__DIR__ . '/../stubs/') as $file) {
+            foreach (app(Filesystem::class)->files(__DIR__.'/../stubs/') as $file) {
                 $this->publishes([
                     $file->getRealPath() => base_path("stubs/filament-kanban/{$file->getFilename()}"),
                 ], 'filament-kanban-stubs');
@@ -67,9 +67,7 @@ class FilamentKanbanServiceProvider extends PackageServiceProvider
     protected function getAssets(): array
     {
         return [
-            // AlpineComponent::make('filament-kanban', __DIR__ . '/../resources/dist/components/filament-kanban.js'),
-            // Js::make('filament-kanban-scripts', __DIR__ . '/../resources/dist/filament-kanban.js'),
-            Css::make('filament-kanban-styles', __DIR__ . '/../resources/dist/filament-kanban.css'),
+            Css::make('filament-kanban-styles', __DIR__.'/../resources/dist/filament-kanban.css'),
         ];
     }
 

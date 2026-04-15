@@ -3,6 +3,12 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/mokhosh/filament-kanban.svg?style=flat-square)](https://packagist.org/packages/mokhosh/filament-kanban)
 [![Total Downloads](https://img.shields.io/packagist/dt/mokhosh/filament-kanban.svg?style=flat-square)](https://packagist.org/packages/mokhosh/filament-kanban)
 
+## Requirements
+
+- PHP 8.2+
+- Filament 5.x
+- Laravel 11.x / 12.x / 13.x
+- Livewire 4.x (included with Filament 5.x)
 
 Easily add Kanban board pages to your Filament panels.
 
@@ -22,11 +28,7 @@ You can install the package via composer:
 composer require mokhosh/filament-kanban
 ```
 
-Publish the assets so the styles are correct:
-
-```bash
-php artisan filament-kanban:install
-```
+The package will auto-register with Filament. No additional installation steps required for Filament 5.x.
 
 ## Before You Start
 
@@ -110,6 +112,7 @@ protected function statuses(): Collection
 ```
 
 You can also override these methods to change your board's behavior when records are dragged and dropped:
+
 - `onStatusChanged` which defines what happens when a record is moved between statuses.
 - `onSortChanged` which defines what happens when a record is moved inside the same status.
 
@@ -270,7 +273,7 @@ Are you a visual learner? I have created some Youtube videos to get you started 
 > [!WARNING]
 > These videos are recorded with version 1.x of the package.
 > It is now much simpler to use the package, and requires much less code from you.
-> 
+>
 > Hopefully, version 2.x is simple enough to not require videos, but you can still learn a thing or two from these.
 
 [![Creating a Kanban Board in FilamentPHP using filament-kanban: Part 1, Basic setup](https://i3.ytimg.com/vi/GquNTj50E78/maxresdefault.jpg)](https://www.youtube.com/watch?v=GquNTj50E78)

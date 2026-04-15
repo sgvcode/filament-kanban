@@ -34,7 +34,14 @@ class KanbanBoard extends Page
 
     protected function statuses(): Collection
     {
-        return static::$statusEnum::statuses();
+        $statuses = static::$statusEnum::statuses();
+
+        // Aceptar tanto array como Collection (compatibilidad con enums que devuelven array)
+        if (is_array($statuses)) {
+            return collect($statuses);
+        }
+
+        return $statuses;
     }
 
     protected function records(): Collection
