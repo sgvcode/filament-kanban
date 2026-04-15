@@ -3,10 +3,15 @@
 namespace Mokhosh\FilamentKanban\Concerns;
 
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
+use Filament\Schemas\Concerns\InteractsWithSchemas;
+use Filament\Schemas\Schema;
+
+use function Livewire\store;
 
 trait HasEditRecordModal
 {
+    use InteractsWithSchemas;
+
     public bool $disableEditModal = false;
 
     public ?array $editModalFormState = [];
@@ -25,7 +30,14 @@ trait HasEditRecordModal
 
     public function mount(): void
     {
-        $this->form->fill();
+        // Workaround for Livewire 4.x bug where error bag may not be initialized
+        if (method_exists($this, 'resetErrorBag') && ! store($this)->has('errorBag')) {
+            $this->resetErrorBag();
+        }
+
+        if (method_exists($this, 'form')) {
+            $this->form->fill();
+        }
     }
 
     public function recordClicked(int | string $recordId, array $data): void
@@ -53,9 +65,9 @@ trait HasEditRecordModal
         $this->dispatch('close-modal', id: 'kanban--edit-record-modal');
     }
 
-    public function form(Form $form): Form
+    public function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema($this->getEditModalFormSchema($this->editModalRecordId))
             ->statePath('editModalFormState')
             ->model($this->editModalRecordId ? static::$model::find($this->editModalRecordId) : static::$model);

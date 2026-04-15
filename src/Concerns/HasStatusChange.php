@@ -4,8 +4,24 @@ namespace Mokhosh\FilamentKanban\Concerns;
 
 use Livewire\Attributes\On;
 
+/**
+ * Fallback for Livewire 4.x in Filament 5.x where #[On] attributes in traits may not be discovered.
+ * This method is used as fallback when attribute-based listeners fail to register.
+ */
 trait HasStatusChange
 {
+    /**
+     * Get event listeners for this component.
+     * This is the fallback mechanism for Livewire 4.x.
+     */
+    public function getListeners(): array
+    {
+        return [
+            'status-changed' => 'onStatusChanged',
+            'sort-changed' => 'onSortChanged',
+        ];
+    }
+
     #[On('status-changed')]
     public function statusChanged(int | string $recordId, string $status, array $fromOrderedIds, array $toOrderedIds): void
     {

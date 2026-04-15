@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(filamentphp.com)",
+      "Bash(composer *)",
+      "Bash(vendor/bin/pest *)",
+      "Bash(ls *)",
+      "Bash(find *)",
+      "Bash(xargs *)",
+      "Bash(curl *)"
+    ]
+  },
+  "$version": 3
+}

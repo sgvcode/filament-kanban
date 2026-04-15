@@ -17,6 +17,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Livewire\LivewireServiceProvider;
 use Mokhosh\FilamentKanban\FilamentKanbanServiceProvider;
 use Mokhosh\FilamentKanban\Tests\Models\User;
+use Mokhosh\FilamentKanban\Tests\Providers\LivewireErrorBagFixServiceProvider;
 use Mokhosh\FilamentKanban\Tests\Providers\TestPanelProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use RyanChandler\BladeCaptureDirective\BladeCaptureDirectiveServiceProvider;
@@ -37,6 +38,9 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            // Register our fix BEFORE Livewire so it runs first
+            LivewireErrorBagFixServiceProvider::class,
+            
             ActionsServiceProvider::class,
             BladeCaptureDirectiveServiceProvider::class,
             BladeHeroiconsServiceProvider::class,

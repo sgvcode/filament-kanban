@@ -14,17 +14,15 @@ class KanbanBoard extends Page
     use HasEditRecordModal;
     use HasStatusChange;
 
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
+    protected string $view = 'filament-kanban::kanban-board';
 
-    protected static string $view = 'filament-kanban::kanban-board';
+    protected string $headerView = 'filament-kanban::kanban-header';
 
-    protected static string $headerView = 'filament-kanban::kanban-header';
+    protected string $recordView = 'filament-kanban::kanban-record';
 
-    protected static string $recordView = 'filament-kanban::kanban-record';
+    protected string $statusView = 'filament-kanban::kanban-status';
 
-    protected static string $statusView = 'filament-kanban::kanban-status';
-
-    protected static string $scriptsView = 'filament-kanban::kanban-scripts';
+    protected string $scriptsView = 'filament-kanban::kanban-scripts';
 
     protected static string $model;
 
