@@ -1,10 +1,12 @@
 {
-  "name": "mokhosh/filament-kanban",
-  "description": "Add kanban boards to your Filament pages",
+  "name": "sgvcode/filament-kanban",
+  "description": "Add kanban boards to your Filament pages - Community maintained fork for Filament 5.x",
   "keywords": [
-    "mokhosh",
+    "sgvcode",
     "laravel",
-    "filament-kanban"
+    "filament",
+    "filament-kanban",
+    "kanban"
   ],
   "homepage": "https://github.com/mokhosh/filament-kanban",
   "support": {

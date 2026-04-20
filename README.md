@@ -1,7 +1,15 @@
 # Add kanban boards to your Filament pages
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/mokhosh/filament-kanban.svg?style=flat-square)](https://packagist.org/packages/mokhosh/filament-kanban)
-[![Total Downloads](https://img.shields.io/packagist/dt/mokhosh/filament-kanban.svg?style=flat-square)](https://packagist.org/packages/mokhosh/filament-kanban)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/sgvcode/filament-kanban.svg?style=flat-square)](https://packagist.org/packages/sgvcode/filament-kanban)
+[![Total Downloads](https://img.shields.io/packagist/dt/sgvcode/filament-kanban.svg?style=flat-square)](https://packagist.org/packages/sgvcode/filament-kanban)
+
+> [!IMPORTANT]
+> **Version 3.x** is the current release for **Filament 5.x** and **Laravel 11/12/13**.
+>
+> This is a community-maintained fork of [mokhosh/filament-kanban](https://github.com/mokhosh/filament-kanban), updated for Filament 5.x and Laravel 13. The original package is no longer actively maintained.
+
+> [!NOTE]
+> For **Filament 3.x** (Laravel 9/10/11), use **version 2.x** from the original maintainer: `composer require mokhosh/filament-kanban:^2.0`
 
 ## Requirements
 
@@ -25,7 +33,18 @@ Easily add Kanban board pages to your Filament panels.
 You can install the package via composer:
 
 ```bash
-composer require mokhosh/filament-kanban
+composer require sgvcode/filament-kanban
+```
+
+If the package is not available on Packagist, add the GitHub repository to your `composer.json`:
+
+```json
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/sgvcode/filament-kanban"
+    }
+]
 ```
 
 The package will auto-register with Filament. No additional installation steps required for Filament 5.x.
@@ -82,11 +101,38 @@ protected static string $statusEnum = UserStatus::class;
 
 ## Upgrade Guide
 
-If you have version 1.x on your application, and you want to upgrade to version 2.x, here is your checklist:
+### From 1.x to 2.x (Filament 3.x)
+
+If you're upgrading from version 1.x, here is your checklist:
 
 - [ ] You need to override `$model` and `$statusEnum` as mentioned in [the last part](#usage)
 - [ ] If you have published `kanban-record.blade.php` view, you can use `$record` as a `Model` instance instead of an `array`.
-- [ ] If you're overriding `KanbanBoard` methods just to do the default behaviour, you can safely remove them now. You should be able to get away with overriding 0 methods, if you don't have special requirements 🥳
+- [ ] If you're overriding `KanbanBoard` methods just to do the default behaviour, you can safely remove them now.
+
+### From 2.x to 3.x (Filament 5.x / Laravel 11-13)
+
+If you're upgrading from version 2.x to work with Filament 5.x and Laravel 11, 12, or 13:
+
+- [ ] Update your `composer.json`:
+  ```json
+  "filament/filament": "^5.0",
+  "illuminate/contracts": "^11.0|^12.0|^13.0"
+  ```
+- [ ] Run `composer update`
+- [ ] If you have custom implementations using `InteractsWithForms`, change to `InteractsWithSchemas`:
+
+  ```php
+  use Filament\Schemas\Concerns\InteractsWithSchemas;
+
+  trait YourTrait
+  {
+      use InteractsWithSchemas;
+  }
+  ```
+
+- [ ] If you're using the `getListeners()` method, it now requires explicit implementation. The `HasStatusChange` trait handles this automatically.
+- [ ] If you're using the edit modal, ensure your blade files use `wire:submit` instead of `wire:submit.prevent`
+- [ ] If you're using Spatie Eloquent Sortable, no changes needed - it works out of the box
 
 ## Advanced Usage
 
@@ -271,10 +317,9 @@ In order to fix that, publish their config and set `ignore_timestamps` to `true`
 Are you a visual learner? I have created some Youtube videos to get you started with the package:
 
 > [!WARNING]
-> These videos are recorded with version 1.x of the package.
-> It is now much simpler to use the package, and requires much less code from you.
+> These videos were recorded with version 1.x of the package. For version 2.x/3.x (Filament 5.x), the setup is much simpler and requires less code.
 >
-> Hopefully, version 2.x is simple enough to not require videos, but you can still learn a thing or two from these.
+> You can still learn the basics, but the implementation details have changed significantly.
 
 [![Creating a Kanban Board in FilamentPHP using filament-kanban: Part 1, Basic setup](https://i3.ytimg.com/vi/GquNTj50E78/maxresdefault.jpg)](https://www.youtube.com/watch?v=GquNTj50E78)
 
@@ -314,17 +359,11 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
-## TODO
-
-- [ ] remove deprecated recently updated trait
-- [ ] stop passing record to view for recordClick
-- [ ] use filament actions for edit modal
-
 ## Credits
 
 - [Mo Khosh](https://github.com/mokhosh)
 - [All Contributors](../../contributors)
-- This original idea and structure of this package borrows heavily from [David Vincent](https://github.com/invaders-xx)'s [filament-kanban-board](https://github.com/invaders-xx/filament-kanban-board/)
+- The original idea and structure of this package was inspired by [David Vincent](https://github.com/invaders-xx)'s [filament-kanban-board](https://github.com/invaders-xx/filament-kanban-board/) (for Filament 2.x/3.x)
 
 ## License
 
