@@ -20,4 +20,4 @@
 - ✓ **Ejecutar** `composer update` para aplicar cambios
 - ✓ **Corregir tipos de propiedades** en `KanbanBoard` (estáticos a instancia)
 - ✓ **Actualizar tests** con nuevos tipos de propiedades
-- ✓ **Resolver errores de validación de Livewire 4** (en progreso)
+- ✓ **Resolver errores de validación de Livewire 4** (completado)
