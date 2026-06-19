@@ -1,6 +1,6 @@
 {
-  "name": "mokhosh/filament-kanban",
-  "description": "Add kanban boards to your Filament pages - Community maintained fork for Filament 5.x",
+  "name": "sgvcode/filament-kanban",
+  "description": "Kanban boards for Filament PHP — maintained fork for Filament 5.x",
   "keywords": [
     "sgvcode",
     "laravel",
@@ -8,17 +8,20 @@
     "filament-kanban",
     "kanban"
   ],
-  "homepage": "https://github.com/mokhosh/filament-kanban",
+  "homepage": "https://github.com/sgvcode/filament-kanban",
   "support": {
-    "issues": "https://github.com/mokhosh/filament-kanban/issues",
-    "source": "https://github.com/mokhosh/filament-kanban"
+    "issues": "https://github.com/sgvcode/filament-kanban/issues",
+    "source": "https://github.com/sgvcode/filament-kanban"
   },
   "license": "MIT",
   "authors": [
     {
       "name": "Mo Khosh",
-      "email": "mskhoshnazar@gmail.com",
       "role": "Developer"
+    },
+    {
+      "name": "sgvcode",
+      "role": "Maintainer"
     }
   ],
   "require": {
